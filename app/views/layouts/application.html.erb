@@ -1,14 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Blog</title>
+	<title>Tsung - Cognitive Neuroscience, Data Science</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400, 700" rel="stylesheet">
+    <script src="https://use.fontawesome.com/3c11c0f49f.js"></script>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<header id="main_navigation" class="clearfix">
+		<%= link_to "Tsung", root_path, class: "name" %>
+		<nav>
+			<%= link_to "Articles", posts_path %>
+			<%= link_to "Categories", projects_path %>
+			<%= link_to "Contact", new_contact_path %>
+			<% if user_signed_in? %>
+				<%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+			<% end %>
+		</nav>
+	</header>
 
-<%= yield %>
+	<% if notice %>
+		<p class="notice"><%= notice %></p>
+	<% elsif alert %>
+		<p class="alert"><%= alert %></p>
+	<% end %>
+
+	<%= yield %>
+
+	<footer id="main_footer">
+		<p class="copyright">&copy;2015 Mackenzie Child</p>
+		<nav>
+			<a href="https://twitter.com/WaitsungTsao" target="_blank"><i class="fa fa-twitter"></i></a>
+			<a href="https://www.youtube.com/channel/UCNd-YyJ-vHlVMdOyzLURmFQ" target="_blank"><i class="fa fa-youtube-play"></i></a>
+			<a href="https://github.com/waitsungtsao" target="_blank"><i class="fa fa-github"></i></a>
+		</nav>
+	</footer>
 
 </body>
 </html>
